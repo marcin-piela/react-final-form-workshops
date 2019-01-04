@@ -1,0 +1,1 @@
+export const isError = (meta) => meta.touched && !!meta.error;

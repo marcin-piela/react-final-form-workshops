@@ -1,0 +1,27 @@
+import { RSAA } from 'redux-api-middleware';
+
+export const SEND_CONTACT_MESSAGE_REQUEST = 'MEMES/SEND_CONTACT_MESSAGE_REQUEST';
+export const SEND_CONTACT_MESSAGE_FAILURE = 'MEMES/SEND_CONTACT_MESSAGE_FAILURE';
+export const SEND_CONTACT_MESSAGE_SUCCESS = 'MEMES/SEND_CONTACT_MESSAGE_SUCCESS';
+
+export const SEND_ESTIMATE_MESSAGE_REQUEST = 'MEMES/SEND_ESTIMATE_MESSAGE_REQUEST';
+export const SEND_ESTIMATE_MESSAGE_FAILURE = 'MEMES/SEND_ESTIMATE_MESSAGE_FAILURE';
+export const SEND_ESTIMATE_MESSAGE_SUCCESS = 'MEMES/SEND_ESTIMATE_MESSAGE_SUCCESS';
+
+export const sendContactMessage = (body) => ({
+  [RSAA]: {
+    endpoint: '/contact',
+    method: 'POST',
+    types: [SEND_CONTACT_MESSAGE_REQUEST, SEND_CONTACT_MESSAGE_FAILURE, SEND_CONTACT_MESSAGE_SUCCESS],
+    body,
+  },
+});
+
+export const sendProjectEstimate = (body) => ({
+  [RSAA]: {
+    endpoint: '/estimate',
+    method: 'POST',
+    types: [SEND_ESTIMATE_MESSAGE_REQUEST, SEND_ESTIMATE_MESSAGE_FAILURE, SEND_ESTIMATE_MESSAGE_SUCCESS],
+    body,
+  },
+});

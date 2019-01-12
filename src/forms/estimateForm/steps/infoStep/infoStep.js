@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import {InputField, TextAreaField} from '../../../fields';
 import { isRequired } from '../../../validation';
@@ -10,7 +10,7 @@ export const InfoStep = () => {
 
       <Field
         name="title"
-        validate={[isRequired]}
+        validate={isRequired}
         label="Type title of project"
         component={InputField}
         type="text"
@@ -20,7 +20,7 @@ export const InfoStep = () => {
 
       <Field
         name="description"
-        validate={[isRequired]}
+        validate={isRequired}
         label="Type description of project"
         component={TextAreaField}
         placeholder="Description"

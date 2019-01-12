@@ -1,1 +1,1 @@
-export const isError = (meta) => meta.touched && !!meta.error;
+export const isError = meta => (meta.touched && !!meta.error) || (!!meta.submitError && !meta.dirtySinceLastSubmit);

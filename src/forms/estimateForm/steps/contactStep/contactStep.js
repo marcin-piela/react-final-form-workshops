@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 import { Grid } from 'semantic-ui-react';
 
 import { InputField, SelectField, CheckboxField } from '../../../fields';
@@ -13,7 +13,7 @@ export const ContactStep = () => {
           <Grid.Column width={8}>
             <Field
               name="firstName"
-              validate={[isRequired]}
+              validate={isRequired}
               label="Firstname"
               component={InputField}
               placeholder="First Name"
@@ -23,7 +23,7 @@ export const ContactStep = () => {
           <Grid.Column width={8}>
             <Field
               name="lastName"
-              validate={[isRequired]}
+              validate={isRequired}
               label="Lastname"
               component={InputField}
               type="text"
@@ -36,7 +36,7 @@ export const ContactStep = () => {
 
       <Field
         name="email"
-        validate={[isRequired]}
+        validate={isRequired}
         label="Email"
         component={InputField}
         type="text"

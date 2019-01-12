@@ -1,16 +1,17 @@
 import React, { Fragment } from 'react';
-import { Field, FieldArray } from 'redux-form';
+import { Field } from 'react-final-form';
+import { FieldArray } from 'react-final-form-arrays';
 import { Step, Icon } from 'semantic-ui-react';
 
 import { TextAreaField } from '../../../fields';
 import { ItemsField } from './itemsField/itemsField';
 
-export const ItemsStep = ({ items, onAddPromotionItem }) => {
+export const ItemsStep = ({ onAddPromotionItem }) => {
   return (
     <Fragment>
       <div style={{ marginBottom: '32px' }}>
         <Step.Group style={{ marginRight: '16px' }}>
-          <Step onClick={() => onAddPromotionItem(items, { name: 'Wordpress', budget: 2000 })}>
+          <Step onClick={() => onAddPromotionItem({ name: 'Wordpress', budget: 2000 })}>
             <Icon name="wordpress" />
             <Step.Content>
               <Step.Title>Wordpress $2000</Step.Title>
@@ -19,7 +20,7 @@ export const ItemsStep = ({ items, onAddPromotionItem }) => {
           </Step>
         </Step.Group>
         <Step.Group>
-          <Step onClick={() => onAddPromotionItem(items, { name: 'Symfony', budget: 4000 })}>
+          <Step onClick={() => onAddPromotionItem({ name: 'Symfony', budget: 4000 })}>
             <Icon name="php" />
             <Step.Content>
               <Step.Title>Symfony $4000</Step.Title>

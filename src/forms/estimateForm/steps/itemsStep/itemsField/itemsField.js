@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, List, Icon } from 'semantic-ui-react';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import { ItemField } from './itemField/itemField';
 

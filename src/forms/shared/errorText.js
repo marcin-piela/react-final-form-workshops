@@ -11,4 +11,5 @@ const errorTextStyles = {
   marginBottom: '-5px',
 };
 
-export const ErrorText = ({ meta }) => isError(meta) ? <span style={errorTextStyles}>{meta.error}</span> : null;
+export const ErrorText = ({ meta }) =>
+  isError(meta) ? <span style={errorTextStyles}>{meta.error || meta.submitError}</span> : null;

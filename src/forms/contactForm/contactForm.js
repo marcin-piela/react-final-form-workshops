@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
-import { Field } from 'redux-form';
+import { Form as FinalForm, Field } from 'react-final-form';
 import { Grid, Button, Form, Message } from 'semantic-ui-react';
 
-import { InputField, TextAreaField, SelectField, CheckboxField } from '../fields';
+import { InputField, TextAreaField, SelectField, CheckboxField, ConditionalField } from '../fields';
 import { isRequired } from '../validation';
 
-export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitting }) => {
+const ContactForm = ({ handleSubmit, pristine, submitting, form: { reset } }) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
-  const onSubmit = values => {
+  const onSubmit = async () => {
     setSuccess(false);
     setError(false);
 
-    const submit = handleSubmit(values);
+    try {
+      const results = await handleSubmit();
 
-    if (submit instanceof Promise) {
-      submit.then(response => {
-        if (response && !response.error && !response.validationError) {
-          setSuccess(true);
+      if (results && !results.validationError) {
+        setSuccess(true);
+
+        try {
           reset();
-        } else if(!response) {
-          setError(true);
-        }
-      });
+        } catch (error) {};
+      }
+    } catch (error) {
+      setError(true);
     }
   };
 
@@ -37,7 +38,7 @@ export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitti
           <Grid.Column width={8}>
             <Field
               name="firstName"
-              validate={[isRequired]}
+              validate={isRequired}
               label="Firstname"
               component={InputField}
               placeholder="First Name"
@@ -47,7 +48,7 @@ export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitti
           <Grid.Column width={8}>
             <Field
               name="lastName"
-              validate={[isRequired]}
+              validate={isRequired}
               label="Lastname"
               component={InputField}
               type="text"
@@ -77,21 +78,21 @@ export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitti
         ]}
       />
 
-      {isCompany && (
+      <ConditionalField when="isCompany" is={true}>
         <Field
           name="companyName"
-          validate={[isRequired]}
+          validate={isRequired}
           label="Company name"
           component={InputField}
           type="text"
           placeholder="Company Name"
           required
         />
-      )}
+      </ConditionalField>
 
       <Field
         name="email"
-        validate={[isRequired]}
+        validate={isRequired}
         label="Email"
         component={InputField}
         type="text"
@@ -128,7 +129,7 @@ export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitti
         label="Technology"
         component={SelectField}
         placeholder="Technology"
-        validate={[isRequired]}
+        validate={isRequired}
         options={[
           {
             key: 'php',
@@ -151,7 +152,7 @@ export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitti
 
       <Field
         name="message"
-        validate={[isRequired]}
+        validate={isRequired}
         label="Message"
         component={TextAreaField}
         placeholder="Message"
@@ -171,3 +172,15 @@ export const ContactForm = ({ isCompany, handleSubmit, pristine, reset, submitti
     </Form>
   );
 };
+
+export default ({ onSubmit }) => (
+  <FinalForm
+    subscription={{ pristine: true, dirty: true, submitting: true }}
+    onSubmit={onSubmit}
+    component={ContactForm}
+    initialValues={{
+      isCompany: false,
+      companyName: '',
+    }}
+  />
+);

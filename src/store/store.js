@@ -8,13 +8,12 @@ import paramsMiddleware from '@tshio/redux-api-params-middleware';
 import { devToolsEnhancer } from 'redux-devtools-extension/logOnlyInProduction';
 
 import { portfolioReducer as portfolio } from './portfolio/portfolioReducer';
-import { validationMiddleware } from './middlewares/validationMiddleware';
 
 const endpointMiddleware = createEndpointMiddleware({
   apiUrl: 'http://localhost:4000',
 });
 
-const middlewares = [endpointMiddleware, contentMiddleware, paramsMiddleware, apiMiddleware, validationMiddleware];
+const middlewares = [endpointMiddleware, contentMiddleware, paramsMiddleware, apiMiddleware];
 
 const createStore = () =>
   reduxCreateStore(

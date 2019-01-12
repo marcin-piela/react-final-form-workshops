@@ -1,13 +1,13 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import { InputField } from '../../../../../fields';
-import {isRequired} from "../../../../../validation";
+import { isRequired } from '../../../../../validation';
 
 export const ItemField = ({ input, index }) => (
   <Grid>
-    <Grid.Row style={index === 0 ? {paddingTop: 0} : {}}>
+    <Grid.Row style={index === 0 ? { paddingTop: 0 } : {}}>
       <Grid.Column width={8}>
         <Field
           name={`${input.name}.name`}
@@ -16,7 +16,7 @@ export const ItemField = ({ input, index }) => (
           label={`#${index + 1} name`}
           inline={true}
           required
-          validate={[isRequired]}
+          validate={isRequired}
         />
       </Grid.Column>
       <Grid.Column width={8}>
@@ -27,7 +27,7 @@ export const ItemField = ({ input, index }) => (
           label={`Budget`}
           inline={true}
           required
-          validate={[isRequired]}
+          validate={isRequired}
         />
       </Grid.Column>
     </Grid.Row>

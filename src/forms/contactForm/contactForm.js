@@ -21,7 +21,7 @@ const ContactForm = ({ handleSubmit, pristine, submitting, form: { reset } }) =>
 
         try {
           reset();
-        } catch (error) {};
+        } catch (error) {}
       }
     } catch (error) {
       setError(true);

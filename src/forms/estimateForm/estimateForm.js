@@ -16,13 +16,7 @@ const budgetCalculator = createDecorator({
   },
 });
 
-const EstimateForm = ({
-  onSave,
-  handleSubmit,
-  pristine,
-  form: { reset, setConfig, change, getState },
-  submitting,
-}) => {
+const EstimateForm = ({ onSave, handleSubmit, pristine, form: { reset, setConfig, change, getState }, submitting }) => {
   const [step, setStep] = useState(1);
   const [validation, setValidation] = useState({ 1: false, 2: false, 3: false });
   const [success, setSuccess] = useState(false);
